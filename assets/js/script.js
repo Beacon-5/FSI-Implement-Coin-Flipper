@@ -1,4 +1,18 @@
 // TODO: Declare any global variables we need
+let flip;
+let totalFlips = 0;
+let numHeads = 0;
+let numTails = 0;
+let headPerc = 0;
+let tailPerc = 0;
+let flipButton = document.querySelector('#flip');
+let clearButton = document.querySelector('#clear');
+let numHeadsBox = document.querySelector('#heads');
+let headPercBox = document.querySelector('#heads-percent');
+let numTailsBox = document.querySelector('#tails');
+let tailPercBox = document.querySelector('#tails-percent');
+let pennyImage = document.querySelector('#pennyImage')
+
 
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -6,8 +20,46 @@ document.addEventListener('DOMContentLoaded', function () {
     // You can remove it once you see it in your browser console in the developer tools
     console.log('Hi')
 
+
     // TODO: Add event listener and handler for flip and clear buttons
 
+    flipButton.addEventListener('click', flipper)
+    function flipper (){
+        flip = Math.round(Math.random());
+        //heads is 0
+        if (flip === 0){
+            totalFlips++;
+            numHeads++;
+            headPerc = Math.round((numHeads/totalFlips)*100);
+            tailPerc = Math.round((numTails/totalFlips)*100);
+            numHeadsBox.textContent = numHeads;
+            headPercBox.textContent = headPerc;
+            numTailsBox.textContent = numTails;
+            tailPercBox.textContent = tailPerc;
+            pennyImage.src = "assets/images/penny-heads.jpg"
+        } else {
+            totalFlips++;
+            numTails++;
+            headPerc = Math.round((numHeads/totalFlips)*100);
+            tailPerc = Math.round((numTails/totalFlips)*100);
+            numHeadsBox.textContent = numHeads;
+            headPercBox.textContent = headPerc;
+            numTailsBox.textContent = numTails;
+            tailPercBox.textContent = tailPerc;
+            pennyImage.src = "assets/images/penny-tails.jpg"
+        }
+    }
+    clearButton.addEventListener('click', clear)
+    function clear (){
+        numHeads = 0;
+        numTails = 0;
+        headPerc = 0;
+        tailPerc = 0;
+        numHeadsBox.textContent = 0;
+        headPercBox.textContent = 0;
+        numTailsBox.textContent = 0;
+        tailPercBox.textContent = 0;
+    }
     // Flip Button Click Handler
         // TODO: Determine flip outcome
         // TODO: Update image and status message in the DOM
